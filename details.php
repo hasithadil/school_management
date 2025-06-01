@@ -53,7 +53,8 @@ $user = $_SESSION['user'];
 
         button,
         input[type="submit"] {
-            padding: 10px 18px;
+            padding: 14px 20px;
+            width: 40%;
             margin-top: 20px;
             margin-right: 10px;
             font-size: 0.95rem;
@@ -86,27 +87,26 @@ $user = $_SESSION['user'];
         }
 
         .detail-row {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 0;
-    border-bottom: 1px solid #e0e0e0;
-    font-size: 1.05rem;
-}
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 1.05rem;
+        }
 
-.detail-row span:first-child {
-    font-weight: 600;
-    color: #444;
-    min-width: 100px;
-}
+        .detail-row span:first-child {
+            font-weight: 600;
+            color: #444;
+            min-width: 100px;
+        }
 
-.detail-row span:last-child {
-    color: #222;
-    text-align: left;
-    flex: 1;
-    padding-left: 15px;
-    word-break: break-word;
-}
-
+        .detail-row span:last-child {
+            color: #222;
+            text-align: left;
+            flex: 1;
+            padding-left: 15px;
+            word-break: break-word;
+        }
 
         footer {
             background-color: rgba(0, 0, 0, 0.7);
@@ -140,6 +140,69 @@ $user = $_SESSION['user'];
                 margin: 10px 0 0;
             }
         }
+
+        /* Confirmation modal styles */
+        .confirm-box {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            display: none;
+        }
+
+        .confirm-content {
+            background: white;
+            padding: 25px 30px;
+            border-radius: 12px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .confirm-content p {
+            font-size: 1.1rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .confirm-actions {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .confirm-actions button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: background 0.3s ease;
+        }
+
+        #cancelBtn {
+            background: #ccc;
+            color: #333;
+        }
+
+        #cancelBtn:hover {
+            background: #bbb;
+        }
+
+        #confirmDeleteBtn {
+            background: #e74c3c;
+            color: white;
+        }
+
+        #confirmDeleteBtn:hover {
+            background: #c0392b;
+        }
     </style>
 </head>
 <body>
@@ -156,14 +219,45 @@ $user = $_SESSION['user'];
         <div class="detail-row"><span>Course:</span><span><?php echo htmlspecialchars($user['course']); ?></span></div>
 
         <a href="edit_account.php"><button>Edit Account</button></a>
-        <form action="delete_account.php" method="post" onsubmit="return confirm('Are you sure you want to delete your account?');" style="display:inline;">
+        <form id="deleteForm" action="delete_account.php" method="post" style="display:inline;">
             <input type="hidden" name="nic" value="<?php echo htmlspecialchars($user['nic']); ?>">
             <input type="submit" value="Delete Account">
         </form>
     </div>
 
+    <!-- Custom confirmation modal -->
+    <div id="confirmBox" class="confirm-box">
+        <div class="confirm-content">
+            <p>Are you sure you want to delete your account?</p>
+            <div class="confirm-actions">
+                <button id="cancelBtn">Cancel</button>
+                <button id="confirmDeleteBtn">Yes, Delete</button>
+            </div>
+        </div>
+    </div>
+
     <footer>
         &copy; <?php echo date("Y"); ?> Student Portal System. All rights reserved.
     </footer>
+
+    <script>
+        const deleteForm = document.getElementById('deleteForm');
+        const confirmBox = document.getElementById('confirmBox');
+        const cancelBtn = document.getElementById('cancelBtn');
+        const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
+
+        deleteForm.addEventListener('submit', function(e) {
+            e.preventDefault(); // prevent actual submit
+            confirmBox.style.display = 'flex'; // show modal
+        });
+
+        cancelBtn.addEventListener('click', function() {
+            confirmBox.style.display = 'none'; // hide modal
+        });
+
+        confirmDeleteBtn.addEventListener('click', function() {
+            deleteForm.submit(); // submit form on confirmation
+        });
+    </script>
 </body>
 </html>

@@ -6,12 +6,12 @@ session_destroy();
 if (isset($_GET['logout']) && $_GET['logout'] == '1') {
     echo "<script>
         alert('Successfully logged out!');
-        window.location.href = 'login.php'; // Redirect to login page after alert
+        window.location.href = 'index.php'; // Redirect to login page after alert
     </script>";
     exit();
 } else {
     // Direct access without confirmation parameter — just redirect to login page
-    header("Location: login.php");
+    header("Location: index.php");
     exit();
 }
 ?>
