@@ -76,6 +76,9 @@ $conn->close();
       padding: 30px 25px;
       border-radius: 10px;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+
+      opacity: 0;
+      animation: fadeIn 0.8s forwards ease-in-out;
     }
 
     .container h2 {
@@ -177,6 +180,12 @@ $conn->close();
       letter-spacing: 0.4px;
       box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.5);
       z-index: 100;
+    }
+
+    @keyframes fadeIn {
+        to {
+            opacity: 1;
+        }
     }
   </style>
 </head>

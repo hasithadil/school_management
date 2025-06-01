@@ -21,11 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             // Verify password
             if (password_verify($password, $user['password'])) {
-                // Store user info in session
-
-                $_SESSION['user'] = $user;  // ✅ must be set before redirecting
-
-                // Redirect to a protected page (example: dashboard.php)
+                $_SESSION['user'] = $user;
                 header("Location: details.php");
                 exit();
             } else {
@@ -67,48 +63,74 @@ $conn->close();
             padding: 30px;
             margin: 100px auto;
             background: #fff;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            opacity: 0;
+            animation: fadeIn 0.8s forwards ease-in-out;
         }
 
         .signin-container h2 {
-            margin-bottom: 20px;
+            text-align: center;
+            margin-bottom: 25px;
+            color: #333;
+            font-size: 24px;
+        }
+
+        .signin-container form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
             color: #333;
         }
 
-        .signin-container label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
+        .signin-container form input[type="email"],
+        .signin-container form input[type="password"] {
+            width: 370px;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            border: 1.5px solid #ccc;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .signin-container input[type="email"],
-        .signin-container input[type="password"] {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+        .signin-container form input[type="email"]:focus,
+        .signin-container form input[type="password"]:focus {
+            border-color: #4a90e2;
+            outline: none;
+            box-shadow: 0 0 5px rgba(70, 130, 230, 0.3);
         }
 
-        .signin-container input[type="submit"] {
+        .signin-container form input[type="submit"] {
             width: 100%;
-            padding: 10px;
-            background-color: #007bff;
+            padding: 12px;
+            background: linear-gradient(to right, #4a90e2, #357ABD);
             color: white;
             border: none;
-            border-radius: 4px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
             cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 12px rgba(70, 130, 230, 0.3);
         }
 
-        .signin-container input[type="submit"]:hover {
-            background-color: #0056b3;
+        .signin-container form input[type="submit"]:hover {
+            background: linear-gradient(to right, #357ABD, #2b6cb0);
+            transform: translateY(-1px);
         }
 
         .signin-container .message {
             margin-top: 15px;
             color: red;
+            text-align: center;
+        }
+
+        .signin-container p {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.95rem;
         }
 
         .signin-container a {
@@ -120,6 +142,26 @@ $conn->close();
             text-decoration: underline;
         }
 
+        footer {
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            text-align: center;
+            padding: 12px 0;
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            font-size: 0.9rem;
+            letter-spacing: 0.4px;
+            box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.5);
+            z-index: 100;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
     </style>
 </head>
 
@@ -129,10 +171,10 @@ $conn->close();
     <div class="signin-container">
         <h2>Sign In</h2>
         <form method="POST" action="">
-            <label for="email">Email:</label>
+            <label for="email">Email</label>
             <input type="email" id="email" name="email" required>
 
-            <label for="password">Password:</label>
+            <label for="password">Password</label>
             <input type="password" id="password" name="password" required>
 
             <input type="submit" value="Sign In">
@@ -142,10 +184,13 @@ $conn->close();
             <div class="message"><?php echo htmlspecialchars($loginMessage); ?></div>
         <?php endif; ?>
 
-        <p style="margin-top: 20px;">
+        <p>
             Don't have an account? <a href="register.php">Register here</a>
         </p>
-
     </div>
+
+    <footer>
+        &copy; <?php echo date("Y"); ?> Your Institute Name. All rights reserved.
+    </footer>
 </body>
 </html>
