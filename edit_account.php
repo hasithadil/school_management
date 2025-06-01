@@ -34,6 +34,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['user']['course'] = $course;
 
         $successMessage = "Account updated successfully!";
+        header("Location: details.php");
+        exit();
     } else {
         $errorMessage = "Error updating account: " . $stmt->error;
     }
@@ -110,7 +112,7 @@ $conn->close();
 </head>
 <body>
 
-<?php include 'un_navbar.php'; ?>
+<?php include 'regi_navbar.php'; ?>
 
 <div class="container">
     <h2>Edit Account</h2>

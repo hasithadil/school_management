@@ -110,6 +110,16 @@ $conn->close();
             margin-top: 15px;
             color: red;
         }
+
+        .signin-container a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .signin-container a:hover {
+            text-decoration: underline;
+        }
+
     </style>
 </head>
 
@@ -131,6 +141,11 @@ $conn->close();
         <?php if (!empty($loginMessage)): ?>
             <div class="message"><?php echo htmlspecialchars($loginMessage); ?></div>
         <?php endif; ?>
+
+        <p style="margin-top: 20px;">
+            Don't have an account? <a href="register.php">Register here</a>
+        </p>
+
     </div>
 </body>
 </html>

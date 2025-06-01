@@ -37,53 +37,66 @@ $conn->close();
 
     <style>
         .register-page body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(rgba(0, 0, 50, 0.7), rgba(0, 0, 70, 0.7)),
+                        url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
+            background-size: cover;
             margin: 0;
             padding: 0;
             display: flex;
-            justify-content: center;
-            align-items: center;
-            height: auto;
-            min-height: 100vh;
             flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            min-height: 100vh;
+            color: #fff;
+            background: rgba(214, 208, 208, 0.95);
         }
 
         .register-page .container {
-            max-width: 600px;
-            margin: 100px auto;
-            padding: 30px;
-            background: #fff;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             text-align: center;
+            background: rgba(255, 255, 255, 0.95);
+            margin: 100px auto 40px auto;
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+            animation: fadeIn 1s ease-in-out;
+            color: #2c3e50;
         }
 
         .register-page h2 {
-            margin-bottom: 20px;
-            color: #333;
+            margin-bottom: 25px;
+            font-size: 26px;
+            color: rgb(106, 106, 229);
         }
 
         .register-page input[type="text"] {
             width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
+            padding: 12px;
+            margin-bottom: 20px;
             border: 1px solid #ccc;
-            border-radius: 4px;
+            border-radius: 6px;
+            font-size: 16px;
         }
 
         .register-page input[type="submit"] {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             background-color: #007bff;
             color: white;
             border: none;
-            border-radius: 4px;
+            border-radius: 6px;
+            font-size: 16px;
             cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
+            transition: background-color 0.3s ease, transform 0.2s ease;
         }
 
         .register-page input[type="submit"]:hover {
             background-color: #0056b3;
+            transform: translateY(-2px);
         }
 
         .register-page .details {
@@ -91,14 +104,47 @@ $conn->close();
             margin-top: 30px;
         }
 
-        .register-page p {
+        .register-page .details h3 {
+            color: rgb(38, 188, 225);
+            margin-bottom: 15px;
+        }
+
+        .register-page .details p {
             margin-bottom: 10px;
             font-size: 16px;
+            color: #333;
         }
 
         .register-page .error {
             color: red;
             font-weight: bold;
+            margin-top: 10px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        footer {
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            text-align: center;
+            padding: 12px 0;
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            font-size: 0.9rem;
+            letter-spacing: 0.4px;
+            box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.5);
+            z-index: 100;
         }
     </style>
 </head>
@@ -117,7 +163,6 @@ $conn->close();
             <p class="error"><?php echo htmlspecialchars($searchError); ?></p>
         <?php endif; ?>
 
-
         <?php if ($searchResult): ?>
             <div class="details">
                 <h3>Student Details</h3>
@@ -131,5 +176,9 @@ $conn->close();
             </div>
         <?php endif; ?>
     </div>
+
+    <footer>
+        &copy; <?php echo date("Y"); ?> Student Portal System. All rights reserved.
+    </footer>
 </body>
 </html>

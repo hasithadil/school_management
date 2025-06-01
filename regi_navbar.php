@@ -54,7 +54,6 @@ body {
     }
     </script>
 
-    <a href="search.php">search</a>
 </div>
 
 </body>
