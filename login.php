@@ -47,6 +47,10 @@ $conn->close();
     <title>Sign In</title>
 
     <style>
+
+        body{
+            background: linear-gradient(to bottom right, #e0f0ff, #f4f4f4);
+        }
         body .signin-page {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
@@ -190,7 +194,7 @@ $conn->close();
     </div>
 
     <footer>
-        &copy; <?php echo date("Y"); ?> Your Institute Name. All rights reserved.
+        &copy; <?php echo date("Y"); ?> Student Portal System. All rights reserved.
     </footer>
 </body>
 </html>

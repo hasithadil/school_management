@@ -19,7 +19,7 @@
       align-items: center;
       height: 100vh;
       color: #fff;
-      background: rgba(214, 208, 208, 0.95);
+      background: rgba(208, 205, 205, 0.95);
     }
 
     .index-page .container {

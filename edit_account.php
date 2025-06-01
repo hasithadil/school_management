@@ -61,6 +61,9 @@ $conn->close();
             padding: 30px;
             background: #f4f4f4;
             border-radius: 10px;
+
+            opacity: 0;
+            animation: fadeIn 0.8s forwards ease-in-out;
         }
 
         h2 {
@@ -103,6 +106,27 @@ $conn->close();
         .error {
             color: red;
         }
+
+        footer {
+      background-color: rgba(0, 0, 0, 0.7);
+      color: #fff;
+      text-align: center;
+      padding: 12px 0;
+      width: 100%;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      font-size: 0.9rem;
+      letter-spacing: 0.4px;
+      box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.5);
+      z-index: 100;
+    }
+
+        @keyframes fadeIn {
+        to {
+            opacity: 1;
+        }
+    }
     </style>
     <script>
         function confirmUpdate() {
@@ -146,6 +170,10 @@ $conn->close();
         <p class="message error"><?php echo htmlspecialchars($errorMessage); ?></p>
     <?php endif; ?>
 </div>
+
+<footer>
+    &copy; <?php echo date("Y"); ?> Student Portal System. All rights reserved.
+  </footer>
 
 </body>
 </html>

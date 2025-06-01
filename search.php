@@ -55,7 +55,7 @@ $conn->close();
         .register-page .container {
             text-align: center;
             background: rgba(255, 255, 255, 0.95);
-            margin: 100px auto 40px auto;
+            margin: 70px auto 40px auto;
             padding: 40px 30px;
             border-radius: 15px;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
@@ -121,6 +121,29 @@ $conn->close();
             margin-top: 10px;
         }
 
+        .detail-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 0;
+        border-bottom: 1px solid #ddd;
+        font-size: 1.05rem;
+    }
+
+    .detail-row span:first-child {
+        font-weight: 600;
+        color: #444;
+        min-width: 100px;
+    }
+
+    .detail-row span:last-child {
+        color: #222;
+        text-align: left;
+        flex: 1;
+        padding-left: 15px;
+        word-break: break-word;
+    }
+
+
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -165,15 +188,16 @@ $conn->close();
 
         <?php if ($searchResult): ?>
             <div class="details">
-                <h3>Student Details</h3>
-                <p><strong>Name:</strong> <?php echo htmlspecialchars($searchResult['name']); ?></p>
-                <p><strong>NIC:</strong> <?php echo htmlspecialchars($searchResult['nic']); ?></p>
-                <p><strong>Gender:</strong> <?php echo htmlspecialchars($searchResult['gender']); ?></p>
-                <p><strong>Address:</strong> <?php echo htmlspecialchars($searchResult['address']); ?></p>
-                <p><strong>Phone:</strong> <?php echo htmlspecialchars($searchResult['phone']); ?></p>
-                <p><strong>Email:</strong> <?php echo htmlspecialchars($searchResult['email']); ?></p>
-                <p><strong>Course:</strong> <?php echo htmlspecialchars($searchResult['course']); ?></p>
-            </div>
+            <h3>Student Details</h3>
+            <div class="detail-row"><span>Name:</span><span><?php echo htmlspecialchars($searchResult['name']); ?></span></div>
+            <div class="detail-row"><span>NIC:</span><span><?php echo htmlspecialchars($searchResult['nic']); ?></span></div>
+            <div class="detail-row"><span>Gender:</span><span><?php echo htmlspecialchars($searchResult['gender']); ?></span></div>
+            <div class="detail-row"><span>Address:</span><span><?php echo htmlspecialchars($searchResult['address']); ?></span></div>
+            <div class="detail-row"><span>Phone:</span><span><?php echo htmlspecialchars($searchResult['phone']); ?></span></div>
+            <div class="detail-row"><span>Email:</span><span><?php echo htmlspecialchars($searchResult['email']); ?></span></div>
+            <div class="detail-row"><span>Course:</span><span><?php echo htmlspecialchars($searchResult['course']); ?></span></div>
+        </div>
+
         <?php endif; ?>
     </div>
 

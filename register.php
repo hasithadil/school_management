@@ -55,7 +55,12 @@ $conn->close();
   <title>Register</title>
 
   <style>
-    body.register-page {
+
+    body{
+      background: linear-gradient(to bottom right, #e0f0ff, #f4f4f4);
+
+    }
+    body .register-page {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
       padding: 0;
@@ -269,7 +274,7 @@ $conn->close();
   </div>
 
   <footer>
-    &copy; <?php echo date("Y"); ?> Your Institute Name. All rights reserved.
+    &copy; <?php echo date("Y"); ?> Student Portal System. All rights reserved.
   </footer>
 </body>
 </html>
